@@ -9,5 +9,11 @@
 </head>
 <body>
     <h1>Home Page</h1>
+    <form method="POST" action="/api/mortgage">
+        <input type="number" name="mortgage" placeholder="Mortgage Amount">
+        <input type="number" name="term" placeholder="term in years">
+        <input type="percent" name="intrest" placeholder="Intrest Rate %">
+        <input type="submit" value="calculate" >
+    </form>
 </body>
 </html>
