@@ -8,9 +8,10 @@ const app = express();
 app.engine('handlebars', exphbs());
 app.set('view engine', 'handlebars');
 
+// Homepage route 
 app.get('/', (req, res) => res.render('index'))
 
-
+// Parse the body
 app.use(express.urlencoded({extended: true}));
 app.use(express.json()) // To parse the incoming requests with JSON payloads
 

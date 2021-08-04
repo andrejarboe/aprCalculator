@@ -1,1 +1,25 @@
 <h1>Handlebars</h1>
+
+<form method="POST" action="/api/mortgage">
+  <div class="row">
+    <input
+      type="number"
+      name="mortgage"
+      placeholder="Mortgage Amount"
+      class="col-sm-12"
+    />
+    <input
+      type="number"
+      name="term"
+      placeholder="term in years"
+      class="col-sm-12"
+    />
+    <input
+      type="percent"
+      name="interest"
+      placeholder="Interest Rate %"
+      class="col-sm-12"
+    />
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </div>
+</form>
