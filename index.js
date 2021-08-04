@@ -4,11 +4,16 @@ const exphbs  = require('express-handlebars');
 
 const app = express();
 
+// Handlebars middleware 
+app.engine('handlebars', exphbs());
+app.set('view engine', 'handlebars');
+
+app.get('/', (req, res) => res.render('index'))
+
+
 app.use(express.urlencoded({extended: true}));
 app.use(express.json()) // To parse the incoming requests with JSON payloads
 
-// Set static folder
-app.use(express.static(path.join(__dirname, 'public')));
 
 // Mortgage api 
 app.use('/api/mortgage', require('./routes/api/mortgage'))
