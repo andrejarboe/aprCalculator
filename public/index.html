@@ -1,19 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
-    <title>Document</title>
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We"
+      crossorigin="anonymous"
+    />
+    <title>APR Calculator</title>
+  </head>
+  <body>
     <h1>Home Page</h1>
     <form method="POST" action="/api/mortgage">
-        <input type="number" name="mortgage" placeholder="Mortgage Amount">
-        <input type="number" name="term" placeholder="term in years">
-        <input type="percent" name="intrest" placeholder="Intrest Rate %">
-        <input type="submit" value="calculate" >
+      <input type="number" name="mortgage" placeholder="Mortgage Amount" />
+      <input type="number" name="term" placeholder="term in years" />
+      <input type="percent" name="intrest" placeholder="Intrest Rate %" />
+      <input type="submit" value="calculate" />
     </form>
-</body>
+
+    <br />
+    <div class="container">
+      <form method="POST" action="/api/mortgage">
+        <div class="row">
+          <input
+            type="number"
+            name="mortgage"
+            placeholder="Mortgage Amount"
+            class="col-sm-12 "
+          />
+          <input
+            type="number"
+            name="term"
+            placeholder="term in years"
+            class="col-sm-12 "
+          />
+          <input
+            type="percent"
+            name="interest"
+            placeholder="Interest Rate %"
+            class="col-sm-12 "
+          />
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+      </form>
+    </div>
+  </body>
 </html>

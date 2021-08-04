@@ -13,7 +13,7 @@ router.post('/', (req, res) => {
     // console.log(req.body);
     // console.log(mortgage);
     // console.log(term);
-    // console.log(intrest);
+    // console.log(interest);
 
     // want to show the monthy payments
     // ex 300,000 5% 30years
@@ -28,7 +28,7 @@ router.post('/', (req, res) => {
     
     const p = req.body.mortgage
     const n = req.body.term * 12
-    const r = req.body.intrest / 100
+    const r = req.body.interest / 100
     const m = (p * r * (1+r)**n)/((1+r)**n -1)
 
     console.log(m);
