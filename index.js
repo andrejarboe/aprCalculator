@@ -1,23 +1,27 @@
-const express = require('express');
-const path = require('path');
-const exphbs  = require('express-handlebars');
+const express = require("express");
+const exphbs = require("express-handlebars");
+const data = require('./Data')
 
 const app = express();
 
-// Handlebars middleware 
-app.engine('handlebars', exphbs());
-app.set('view engine', 'handlebars');
 
-// Homepage route 
-app.get('/', (req, res) => res.render('index'))
+// Handlebars middleware
+app.engine("handlebars", exphbs());
+app.set("view engine", "handlebars");
 
-// Parse the body
-app.use(express.urlencoded({extended: true}));
-app.use(express.json()) // To parse the incoming requests with JSON payloads
+// Body Parser Middleware
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
+// Homepage Route
+app.get("/", (req, res) => 
+  res.render("index", {
+    data
+  })
+);
 
-// Mortgage api 
-app.use('/api/mortgage', require('./routes/api/mortgage'))
+// Mortgage api
+app.use("/api/mortgage", require("./routes/api/mortgage"));
 
 const PORT = process.env.PORT || 5000;
 

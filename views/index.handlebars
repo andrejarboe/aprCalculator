@@ -1,25 +1,25 @@
-<h1>Handlebars</h1>
-
+<h1>APR Calculator</h1>
+<h2>Monthly payment: {{data.mortgage}}</h2>
 <form method="POST" action="/api/mortgage">
   <div class="row">
     <input
       type="number"
       name="mortgage"
       placeholder="Mortgage Amount"
-      class="col-sm-12"
+      class="col-sm-12 form-group"
     />
     <input
       type="number"
       name="term"
       placeholder="term in years"
-      class="col-sm-12"
+      class="col-sm-12 form-group"
     />
     <input
       type="percent"
       name="interest"
       placeholder="Interest Rate %"
-      class="col-sm-12"
+      class="col-sm-12 form-group"
     />
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" value="calculate" class="btn btn-primary">Submit</button>
   </div>
 </form>
