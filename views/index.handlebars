@@ -1,25 +1,36 @@
-<h1>APR Calculator</h1>
-<h2>Monthly payment: {{data.mortgage}}</h2>
+<h1>
+  <a href="/">
+    APR Calculator
+  </a>
+</h1>
+<h2>Monthly payment: {{data.monthly}}</h2>
 <form method="POST" action="/api/mortgage">
   <div class="row">
     <input
       type="number"
-      name="mortgage"
-      placeholder="Mortgage Amount"
+      name="principal"
+      placeholder="Mortgage Amount: {{data.principal}}"
       class="col-sm-12 form-group"
+      value="{{data.principal}}"
     />
     <input
       type="number"
       name="term"
-      placeholder="term in years"
+      placeholder="term in years: {{data.term}}yrs"
       class="col-sm-12 form-group"
+      value="{{data.term}}"
     />
     <input
       type="percent"
       name="interest"
-      placeholder="Interest Rate %"
+      placeholder="Interest Rate {{data.interest}} %"
       class="col-sm-12 form-group"
+      value="{{data.interest}}"
     />
-    <button type="submit" value="calculate" class="btn btn-primary">Submit</button>
+    <button
+      type="submit"
+      {{!-- value="calculate" --}}
+      class="btn btn-primary"
+    >Submit</button>
   </div>
 </form>
