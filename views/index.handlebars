@@ -4,6 +4,7 @@
   </a>
 </h1>
 <h2>Monthly payment: {{data.monthly}}</h2>
+<h2>Loan APR: {{data.apr}}</h2>
 <form method="POST" action="/api/mortgage">
   <div class="row">
     <input
@@ -34,3 +35,6 @@
     >Submit</button>
   </div>
 </form>
+
+<h3>Total Payments: {{data.totalPayment}}</h3>
+<h3>Total Interest: {{data.totalInterest}}</h3>
