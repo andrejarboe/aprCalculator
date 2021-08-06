@@ -48,9 +48,26 @@ router.post("/", (req, res) => {
         APR = ((Interest + Fees / Loan amount) / 12 periods)) x 100
       */
     const totalFees = 0;
-    const loanAPR =     (( ((data.totalInterest + totalFees) / data.principal ) / 30.416 ) * 365 )* 100;
+    const loanAPR =     (
+      ( ((data.totalInterest + totalFees) / data.principal ) / (365 * data.term) ) * 365 )* 100;
 
-    data.apr = loanAPR;
+    let  apr;
+    
+    apr = data.totalInterest + totalFees
+    apr = apr/data.principal
+    apr = apr / 12
+    apr = apr * 365
+    apr = apr * 100
+
+
+
+    // let feeesOverP = (totalFees + data.interest) / data.principal
+
+    // let fraction = feeesOverP / 365 * 30
+
+    // let loanAPR = fraction * 365 * 100
+
+    data.apr = apr;
   }
 
   console.log("*******old********");
