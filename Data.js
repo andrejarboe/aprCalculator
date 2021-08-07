@@ -3,6 +3,7 @@ let data = {
   term: 30,
   interest: 4.5,
   monthly: 1013.37,
+  fees: 0,
   apr: 4.703,
   totalPayment: 364813.2,
   totalInterest: 164814,
