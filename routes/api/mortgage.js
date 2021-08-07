@@ -6,7 +6,7 @@ const data = require("../../Data");
 router.post("/", (req, res) => {
   console.log("hello");
 
-  // want to show the monthy payments
+  // want to show the monthly payments
   // ex 300,000 5% 30years
   // m = (p * r (1+r)^n)/((1+r)^n -1)
   // P = principal loan amount
@@ -53,51 +53,45 @@ router.post("/", (req, res) => {
     const p = data.principal + data.fees;
     const n = data.term * 12;
 
+    // i = data.interest / 100 / 12
+    function monthlyPayment(i) {
+      return (
+        (p * i * Math.pow(1 + i, n)) / (Math.pow(1 + i, n) - 1) - data.monthly
+      );
+    }
 
+    function monthlyPaymentPrime(i) {
+      return (
+        p *
+        (Math.pow(1 + i, n) / (-1 + Math.pow(1 + i, n)) -
+          (n * i * Math.pow(1 + i, -1 + 2 * n)) /
+            Math.pow(-1 + Math.pow(1 + i, n), 2) +
+          (n * i * Math.pow(1 + i, -1 + n)) / (-1 + Math.pow(1 + i, n)))
+      );
+    }
 
-  // i = data.interest / 100 / 12
-  function monthlyPayment(i) {
-    return p * i * Math.pow(1 + i, n)/(Math.pow(1 + i, n) - 1) - data.monthly
+    // guess and check based on Newtons formula
+    let guess = 0.001 / 12;
+    let nextGuess;
+
+    for (let i = 0; i < 100; i++) {
+      // let nextGuess = guess - monthlyPayment(guess) / monthlyPaymentPrime(guess);
+      // console.log(nextGuess);
+      // guess = nextGuess;
+      nextGuess = guess;
+      guess =
+      nextGuess - monthlyPayment(nextGuess) / monthlyPaymentPrime(nextGuess);
+      diff = Math.abs(guess - nextGuess);
+      diff = guess - nextGuess;
+      if (Math.abs(guess) < 0.0000001) break;
+      console.log("new guess" + guess + " diff  is " + diff);
+    }
+
+    apr = (guess * 12 * 10000) / 100;
+    data.apr = Number(apr.toFixed(3));
+
+    console.log(data);
   }
-
-
-
-  function monthlyPaymentPrime(i) {
-    return (
-      p *
-      (Math.pow(1 + i, n) / (-1 + Math.pow(1 + i, n)) -
-        (n * i * Math.pow(1 + i, -1 + 2 * n)) /
-          Math.pow(-1 + Math.pow(1 + i, n), 2) +
-        (n * i * Math.pow(1 + i, -1 + n)) /
-          (-1 + Math.pow(1 + i, n)))
-    );
-  }
-
-  // guess and check based on Newtons formula
-  let guess = 0.001 / 12;
-  let nextGuess;
-
-  for (let i = 0; i < 20; i++) {
-    // let nextGuess = guess - monthlyPayment(guess) / monthlyPaymentPrime(guess);
-    // console.log(nextGuess);
-    // guess = nextGuess;
-    nextGuess = guess;
-    guess = nextGuess - monthlyPayment(nextGuess) / monthlyPaymentPrime(nextGuess);
-    diff = guess-nextGuess;
-    console.log("new guess" + guess + " diff  is " + diff)
-
-  }
-
-
-
-apr = Math.round(guess * 12 * 10000)/100 
-data.apr = apr;
-
-console.log(data);
-
-
-  
-}
 
   console.log("*******old********");
   console.log(data);
@@ -109,15 +103,14 @@ console.log(data);
   data.interest = Number(req.body.interest);
   data.fees = Number(req.body.fees);
 
-
   calculateMonthlyPayments(data);
   calculateTotalPayments(data);
   calculateTotalInterest(data);
-  
+
   console.log("*******New********");
   console.log(data);
   console.log("*******New********");
-  
+
   //   const p = data.principal;
   //   console.log("Mortgage: " + p);
   //   const t = data.term * 12;
@@ -125,22 +118,22 @@ console.log(data);
   //   const i = data.interest / 100;
   //   console.log("Interest: " + i);
   //   // p * ( (i * (1+i)**t )/ ((1+i)**t) - 1)
-  
+
   //   const m = p * (i * (1 + i)** t) / ((1 + i)** t - 1);
-  
+
   // let m = ((1+i)**t )- 1
   //   let m = (p * (i * (1 + i) ** t)) / ((1 + i) ** t - 1);
   //   console.log("Monthly " + m);
-  
+
   //   data.principal = p;
   //   data.term = t;
   //   data.intrest =
-  
+
   console.log("***************");
   console.log(data);
   console.log("***************");
-  
-  calculateAPR(data)
+
+  calculateAPR(data);
   res.redirect("/");
 });
 
