@@ -7,6 +7,7 @@
 <h2>Loan APR: {{data.apr}}</h2>
 <form method="POST" action="/api/mortgage">
   <div class="row">
+    <label for="principal">Mortgage Amount:</label>
     <input
       type="number"
       name="principal"
@@ -14,13 +15,15 @@
       class="col-sm-12 form-group"
       value="{{data.principal}}"
     />
+    <label for="term">Terms in years:</label>
     <input
       type="number"
       name="term"
-      placeholder="term in years: {{data.term}}yrs"
+      placeholder="terms in years: {{data.term}}yrs"
       class="col-sm-12 form-group"
       value="{{data.term}}"
     />
+    <label for="interest">Base interest rate:</label>
     <input
       type="percent"
       name="interest"
@@ -28,7 +31,8 @@
       class="col-sm-12 form-group"
       value="{{data.interest}}"
     />
-  <input
+    <label for="fees">Loan fees:</label>
+    <input
       type="number"
       name="fees"
       placeholder="Loan Fees {{data.fees}} %"
@@ -37,7 +41,7 @@
     />
     <button
       type="submit"
-      {{!-- value="calculate" --}}
+      {{! value="calculate" }}
       class="btn btn-primary"
     >Submit</button>
   </div>
